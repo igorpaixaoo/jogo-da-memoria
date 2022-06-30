@@ -1,5 +1,7 @@
-#Memory Game
+Memory Game
+===========
 ##Version BETA
+--------------
 
 This project is a memory game based on programming languages.
 
