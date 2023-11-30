@@ -159,6 +159,12 @@ img{
         top: 2%;
         transform: translateX(-50%);
     }
+
+    #credits{
+        top: 95%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
   
   
 }
