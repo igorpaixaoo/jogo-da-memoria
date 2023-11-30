@@ -1,8 +1,19 @@
 const cards = document.querySelectorAll(".carta")
 let hasFlipedCard = false;
+
 var asserts = document.getElementById("asserts");
+var win = document.getElementById("win")
+var btnNewGame = document.getElementById("newGame");
+
 let card1, card2;
 let lockBoard = false;
+
+let frasesAcertos = ['gg', 'acertou', 'finalmente kkk', 'nooooossa']
+let frasesErros = ['paia', 'Faz o L', 'mt ruim n da kkk', 'errei fui neymar', 'bah']
+
+let randomNumber = Math.floor(Math.random() * 10);
+
+let numberCards = 0;
 
 function virarCarta(){
     if(lockBoard) return;
@@ -21,14 +32,32 @@ function virarCarta(){
 
 }
 
+//função para checar as cartas
 function check(){
+
     if(card1.dataset.card === card2.dataset.card){
-        asserts.textContent = "Ai sim ein!";
+
+        //mostrar frases aleatórias ao combinar as cartas
+        asserts.textContent = frasesAcertos[randomNumber];
+
+        asserts.style.color = '#00b900'
+
         setTimeout(() => {
             asserts.textContent = null;
-        }, 2000)        
+        }, 1000)        
 
         disableCards();
+        randomNumber = Math.floor(Math.random() * 4);
+
+        //Aumentar o número de cards a cada acerto
+        numberCards++;
+        console.log(numberCards)
+
+        if(numberCards == 6){
+            win.style.display = "block"
+            btnNewGame.style.display = "block"
+        }
+
         return;
     }
 
@@ -45,12 +74,22 @@ function disableCards(){
 
 function unflipCards(){
     lockBoard = true;
+
     setTimeout(() => {        
         card1.classList.remove("virar");
         card2.classList.remove("virar");
         lockBoard = false;
         reset();
     }, 500);
+
+    randomNumber = Math.floor(Math.random() * 5);
+
+    asserts.textContent = frasesErros[randomNumber]
+    asserts.style.color = '#ff0000'
+
+    setTimeout(() => {
+        asserts.textContent = null;
+    }, 1000)  
 
 }
 
@@ -61,6 +100,9 @@ function reset(){
 
 //Função imediata
 var suffle = (function (){
+    win.style.display = "none"
+    btnNewGame.style.display = "none"
+
     cards.forEach((card) =>{
         let random = Math.floor(Math.random() * 12)
         card.style.order = random;
