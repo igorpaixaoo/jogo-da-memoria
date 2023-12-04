@@ -40,7 +40,7 @@ function check(){
         //mostrar frases aleatórias ao combinar as cartas
         asserts.textContent = frasesAcertos[randomNumber];
 
-        asserts.style.color = '#00b900'
+        asserts.style.color = '#007900'
 
         setTimeout(() => {
             asserts.textContent = null;
