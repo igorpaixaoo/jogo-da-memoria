@@ -9,13 +9,17 @@ var btnNewGame = document.getElementById("newGame");
 let card1, card2;
 let lockBoard = false;
 
-let frasesAcertos = ['gg', 'acertou', 'finalmente kkk', 'nooooossa']
-let frasesErros = ['paia', 'Faz o L', 'mt ruim n da kkk', 'errei fui neymar', 'bah']
+let pararTimer = true;
+
+let frasesAcertos = ['gg', 'acertou', 'finalmente kkk', 'nooooossa', 'ai andrei aranha']
+let frasesErros = ['paia', 'Faz o L', 'mt ruim n da kkk', 'errei fui neymar', 'bah', 'GABRIEEELLLL']
 
 
 var ms = 0;
 var s = 0;
 var m = 0;
+
+var tempoVar = 1000
 
 
 
@@ -27,16 +31,22 @@ var intervalo;
 
 function tempo() {
 
-	intervalo = window.setInterval(function() {
-        
-		if (ms == 1000) { s++; }
-		if (s == 60) { m++; s = 0; }
+    if(pararTimer == true){
 
-        document.getElementById("ms").innerHTML = ms;
-		if (s < 10) document.getElementById("sec").innerHTML = "0" + s; else document.getElementById("sec").innerHTML = s;
-		if (m < 10) document.getElementById("min").innerHTML = "0" + m; else document.getElementById("min").innerHTML = m;		
-		s++;
-	},1000);
+        intervalo = window.setInterval(function() {
+        
+            if (ms == 1000) { s++; }
+            if (s == 60) { m++; s = 0; }
+    
+            if (s < 10) document.getElementById("sec").innerHTML = "0" + s; else document.getElementById("sec").innerHTML = s;
+            if (m < 10) document.getElementById("min").innerHTML = "0" + m; else document.getElementById("min").innerHTML = m;		
+            s++;
+        }, tempoVar);
+    } else{
+        pararTimer = false;
+        tempo = 0
+    } 
+
 }
 
 
@@ -67,12 +77,13 @@ function check(){
 
         asserts.style.color = '#007900'
 
+        
         setTimeout(() => {
             asserts.textContent = null;
         }, 700)        
 
         disableCards();
-        randomNumber = Math.floor(Math.random() * 4);
+        randomNumber = Math.floor(Math.random() * 6);
 
         //Aumentar o número de cards a cada acerto
         numberCards++;
@@ -82,7 +93,7 @@ function check(){
             win.style.display = "block"
             btnNewGame.style.display = "block"
 
-            recorde = m + s
+            tempo = 0
         }
 
         return;
@@ -109,7 +120,7 @@ function unflipCards(){
         reset();
     }, 500);
 
-    randomNumber = Math.floor(Math.random() * 5);
+    randomNumber = Math.floor(Math.random() * 6);
 
     asserts.textContent = frasesErros[randomNumber]
     asserts.style.color = '#ff0000'
@@ -128,6 +139,7 @@ function reset(){
 //Função imediata
 var suffle = (function (){
     tempo()
+
     win.style.display = "none"
     btnNewGame.style.display = "none"
 

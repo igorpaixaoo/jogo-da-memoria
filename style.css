@@ -113,8 +113,8 @@ img{
     position: absolute;
     top: 25%;
     left: 82%;
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 245px;
 }
 
 #credits{
@@ -125,13 +125,12 @@ img{
 }
 
 #qr-code{
-    width: 120px;
-    height: 120px;
+    width: 200px;
+    height: 255px;
     position: absolute;
-    left: 10%;
-    top: 10%;
-    opacity: calc(50%);
-    display: none;
+    left: 80%;
+    top: 60%;
+
 }
 
 .container2{
@@ -229,7 +228,7 @@ button{
 }
 
 .info-grupo p{
-    font-size: 15pt
+     font-size: 15pt
     
 }
 
@@ -243,7 +242,7 @@ button{
 
 #min, #sec{
     font-size: 40pt;
-    
+    margin-left: 10px;
 }
 
 #id{
