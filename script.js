@@ -5,15 +5,40 @@ var asserts = document.getElementById("asserts");
 var win = document.getElementById("win")
 var btnNewGame = document.getElementById("newGame");
 
+
 let card1, card2;
 let lockBoard = false;
 
 let frasesAcertos = ['gg', 'acertou', 'finalmente kkk', 'nooooossa']
 let frasesErros = ['paia', 'Faz o L', 'mt ruim n da kkk', 'errei fui neymar', 'bah']
 
+
+var ms = 0;
+var s = 0;
+var m = 0;
+
+
+
 let randomNumber = Math.floor(Math.random() * 10);
 
 let numberCards = 0;
+
+var intervalo;
+
+function tempo() {
+
+	intervalo = window.setInterval(function() {
+        
+		if (ms == 1000) { s++; }
+		if (s == 60) { m++; s = 0; }
+
+        document.getElementById("ms").innerHTML = ms;
+		if (s < 10) document.getElementById("sec").innerHTML = "0" + s; else document.getElementById("sec").innerHTML = s;
+		if (m < 10) document.getElementById("min").innerHTML = "0" + m; else document.getElementById("min").innerHTML = m;		
+		s++;
+	},1000);
+}
+
 
 function virarCarta(){
     if(lockBoard) return;
@@ -56,6 +81,8 @@ function check(){
         if(numberCards == 6){
             win.style.display = "block"
             btnNewGame.style.display = "block"
+
+            recorde = m + s
         }
 
         return;
@@ -100,6 +127,7 @@ function reset(){
 
 //Função imediata
 var suffle = (function (){
+    tempo()
     win.style.display = "none"
     btnNewGame.style.display = "none"
 

@@ -241,6 +241,15 @@ button{
     flex-direction: column;
 }
 
+#min, #sec{
+    font-size: 40pt;
+    
+}
+
+#id{
+    font-size: 20pt;
+}
+
 
 @media screen and (max-width: 700px) {
 
