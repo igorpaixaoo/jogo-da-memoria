@@ -44,7 +44,7 @@ function check(){
 
         setTimeout(() => {
             asserts.textContent = null;
-        }, 1000)        
+        }, 700)        
 
         disableCards();
         randomNumber = Math.floor(Math.random() * 4);
@@ -89,7 +89,7 @@ function unflipCards(){
 
     setTimeout(() => {
         asserts.textContent = null;
-    }, 1000)  
+    }, 700)  
 
 }
 
