@@ -4,16 +4,17 @@ let hasFlipedCard = false;
 var asserts = document.getElementById("asserts");
 var win = document.getElementById("win")
 var btnNewGame = document.getElementById("newGame");
+var fastest = document.getElementById("fastest")
 
 
 let card1, card2;
 let lockBoard = false;
 
-let pararTimer = true;
+var pararTimer = false;
+var time;
 
 let frasesAcertos = ['gg', 'acertou', 'finalmente kkk', 'nooooossa', 'ai andrei aranha']
 let frasesErros = ['paia', 'Faz o L', 'mt ruim n da kkk', 'errei fui neymar', 'bah', 'GABRIEEELLLL']
-
 
 var ms = 0;
 var s = 0;
@@ -21,32 +22,41 @@ var m = 0;
 
 var tempoVar = 1000
 
-
-
 let randomNumber = Math.floor(Math.random() * 10);
 
 let numberCards = 0;
 
 var intervalo;
 
-function tempo() {
+var fastestMin = 1;
+var fastestSec = 58;
+var fastestMs;
 
-    if(pararTimer == true){
+function temp() {
 
-        intervalo = window.setInterval(function() {
-        
-            if (ms == 1000) { s++; }
-            if (s == 60) { m++; s = 0; }
+    if(pararTimer == false){
+        time = setInterval(() =>{
+            ms++
+            var d = document.getElementById("ms")
+            d.innerHTML = ms + "0"
     
-            if (s < 10) document.getElementById("sec").innerHTML = "0" + s; else document.getElementById("sec").innerHTML = s;
-            if (m < 10) document.getElementById("min").innerHTML = "0" + m; else document.getElementById("min").innerHTML = m;		
-            s++;
-        }, tempoVar);
-    } else{
-        pararTimer = false;
-        tempo = 0
-    } 
-
+            if(ms > 99){
+                ms = 0  
+                s++
+                var s1 = document.getElementById("sec")
+                if(s < 10) s1.innerHTML = "0" + s
+                else s1.innerHTML = s
+                
+                if(s > 58) {
+                    m++
+                    s = 0
+                    var m1 = document.getElementById("min")
+                    if(m < 10) m1.innerHTML = "0" + m
+                    else m1.innerHTML = m
+                }
+            }
+        }, 11)    
+    }
 }
 
 
@@ -93,7 +103,11 @@ function check(){
             win.style.display = "block"
             btnNewGame.style.display = "block"
 
-            tempo = 0
+            clearInterval(time)
+
+            if(m < fastestMin && s < fastestSec){
+                console.log("Fastest Memory")
+            }
         }
 
         return;
@@ -138,10 +152,11 @@ function reset(){
 
 //Função imediata
 var suffle = (function (){
-    tempo()
+    temp()
 
     win.style.display = "none"
     btnNewGame.style.display = "none"
+    fastest.style.display = "none"
 
     cards.forEach((card) =>{
         let random = Math.floor(Math.random() * 12)

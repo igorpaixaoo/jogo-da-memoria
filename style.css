@@ -111,8 +111,8 @@ img{
 
 #win{
     position: absolute;
-    top: 25%;
-    left: 82%;
+    top: 10%;
+    left: 79%;
     width: 200px;
     height: 245px;
 }
@@ -240,13 +240,30 @@ button{
     flex-direction: column;
 }
 
+.timer{
+    position: absolute;
+    left: 6%;
+    top: 7%;
+}
+
 #min, #sec{
     font-size: 40pt;
-    margin-left: 10px;
+}
+
+#ms{
+    font-size: 20pt;
 }
 
 #id{
     font-size: 20pt;
+}
+
+#fastest{
+    position: absolute;
+    left: 0%;
+    top: 5%;
+    width: 100px;
+    height: 100px;
 }
 
 
